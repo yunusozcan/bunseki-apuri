@@ -1,0 +1,13 @@
+.App-back {
+    flex-grow: 1;
+    text-align: center;
+    min-width: 30px;
+    max-width: 50px;
+
+}
+
+.App-back-image {
+    width: 10px;
+    height: 10px;
+    padding-top: 17px;
+}

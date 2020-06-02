@@ -1,0 +1,12 @@
+.App-header {
+    background: aliceblue;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-bottom: 5px;
+    height: 46px;
+}

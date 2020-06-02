@@ -1,0 +1,34 @@
+.App-select {
+    flex-grow: 10;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.DateInput {
+    width: 100px;
+}
+
+.DateInput__small {
+    width: 80px;
+}
+
+.DateRangePicker_picker {
+    z-index: 99;
+}
+
+.DayPickerNavigation_button__verticalDefault {
+    width: 30%;
+}
+
+@media only screen and (max-width: 320px) {
+    .DateInput__small {
+        width: 70px;
+    }
+
+    .DateInput_input__small {
+        font-size: 13px;
+    }
+
+}

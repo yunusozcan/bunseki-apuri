@@ -1,0 +1,10 @@
+.App-button {
+    flex-grow: 1;
+    background: white;
+    border: none;
+    float: right;
+}
+
+.App-button span, .App-button img {
+    vertical-align: middle;
+}

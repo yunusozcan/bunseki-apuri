@@ -1,0 +1,18 @@
+.App-list-item {
+    background: whitesmoke;
+    margin-bottom: 5px;
+    padding: 5px;
+    cursor: pointer;
+    height: 40px;
+    font-size: 18px;
+}
+
+.App-list-item button {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.App-list-item-span {
+    margin: 9px;
+    display: inline-block;
+}
