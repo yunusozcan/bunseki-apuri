@@ -19,7 +19,7 @@ function Dashboard() {
     const loadData = useCallback(() => {
         setIsLoaded(false);
         setdefaultData(true);
-        fetch(config.apiUrl + config.apiVersion + config.routes.dashboard + id)
+        fetch(process.env.REACT_APP_API_URL + config.apiUrl + config.apiVersion + config.routes.dashboard + id)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -35,7 +35,7 @@ function Dashboard() {
 
     const loadDataWithDates = (dates) => {
         setIsLoaded(false);
-        fetch(config.apiUrl + config.apiVersion + config.routes.dashboard + id, {
+        fetch(process.env.REACT_APP_API_URL + config.apiUrl + config.apiVersion + config.routes.dashboard + id, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

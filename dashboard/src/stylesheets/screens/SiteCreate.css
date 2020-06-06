@@ -1,0 +1,36 @@
+.App-brand {
+    text-align: center;
+    padding-left: 20px;
+    margin: 10px;
+}
+
+.App-create {
+    padding-right: 20px;
+    margin: 13px;
+    color: initial;
+}
+
+.App-form, .App-create-title {
+    text-align: center;
+}
+
+.App-form input{
+    display: inline-block;
+    width: 80%;
+    height: 40px;
+    margin: 10px 4%;
+}
+
+.App-form input[type=submit]{
+    width: 200px;
+}
+
+.App-code{
+    width: 70%;
+    background: whitesmoke;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    border-radius: 20px;
+    overflow: scroll;
+}

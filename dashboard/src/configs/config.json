@@ -1,8 +1,9 @@
 {
-  "apiUrl": "http://localhost:3000/api/",
+  "apiUrl": "api/",
   "apiVersion": "v1/",
   "routes": {
-    "siteList": "dashboard/list",
+    "siteList": "dashboard/sites",
+    "siteCreate": "dashboard/sites/new",
     "dashboard": "dashboard/measures/"
   }
 }

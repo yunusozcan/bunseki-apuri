@@ -1,8 +1,10 @@
 .App-brand {
     text-align: center;
     padding-left: 20px;
+    margin: 10px;
 }
 
 .App-login {
     padding-right: 20px;
+    margin: 13px;
 }
