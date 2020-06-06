@@ -7,30 +7,50 @@ const app = require("../src/app");
 describe("api/v1/client-side", () => {
     describe("measures", () => {
         describe("POST/", () => {
-            it("should return 200 success when valid object id is passed", async () => {
-                const site = await models.Site.findOne({
-                    order: [['createdAt', 'ASC']],
-                    include    : [{ model: models.Measurement, attributes: ["type","value", "timestamp"]}]
-                }).then((r) => r);
-
-                console.log(site);
-                const res = await request(app).post("/api/v1/client-side/measures")
-                    .send({
-                        uuId: site.uuId,
-                        data: site.Measurements,
-                    });
-                expect(res.status).to.equal(200);
+            it("should return 200 success when valid object is passed", async () => {
+                let uuid =  require('crypto').randomBytes(64).toString('base64');
+                const site = models.Site.findOrCreate({
+                    where: {webAdress: "http://www.test.com/"}
+                }).spread(async (site, created) => {
+                    if (created) {
+                        site.set("uuId", uuid);
+                        site.save();
+                    }
+                    const res = await request(app).post("/api/v1/client-side/measures")
+                        .set('Authorization', 'Bearer ' + site.uuId)
+                        .send({
+                            data: [
+                                {
+                                    "type": "ttfb",
+                                    "value": "200.3455665",
+                                    "timestamp": "2020-05-30T13:57:56.035Z"
+                                },
+                            ],
+                        });
+                    expect(res.status).to.equal(200);
+                });
             });
 
             it("should return 400 when analytics data is not passed", async () => {
-                const res = await request(app).post("/api/v1/client-side/measures");
-                expect(res.status).to.equal(400);
+                let uuid =  require('crypto').randomBytes(64).toString('base64');
+                const site = models.Site.findOrCreate({
+                    where: {webAdress: "http://www.test.com/"}
+                }).spread(async (site, created) => {
+                    if (created) {
+                        site.set("uuId", uuid);
+                        site.save();
+                    }
+                    const res = await request(app).post("/api/v1/client-side/measures")
+                        .set('Authorization', 'Bearer ' + site.uuId)
+                    expect(res.status).to.equal(400);
+                });
+
+
             });
 
-            it("should return 404 error when invalid site uuId is passed", async () => {
+            it("should return 401 error when there is no token", async () => {
                 const res = await request(app).post("/api/v1/client-side/measures")
                     .send({
-                        uuId: "TC-999999",
                         data: [
                             {
                                 "type": "ttfb",
@@ -39,7 +59,24 @@ describe("api/v1/client-side", () => {
                             },
                         ]
                     });
-                expect(res.status).to.equal(404);
+                expect(res.status).to.equal(401);
+            });
+
+            it("should return 401 error when there is invalid token", async () => {
+                let uuid =  require('crypto').randomBytes(64).toString('base64');
+
+                const res = await request(app).post("/api/v1/client-side/measures")
+                    .set('Authorization', 'Bearer ' + uuid)
+                    .send({
+                        data: [
+                            {
+                                "type": "ttfb",
+                                "value": "200.3455665",
+                                "timestamp": "2020-05-30T13:57:56.035Z"
+                            },
+                        ]
+                    });
+                expect(res.status).to.equal(401);
             });
         });
     });

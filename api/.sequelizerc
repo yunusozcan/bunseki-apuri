@@ -1,8 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  'config': path.resolve('src/config', 'config.json'),
+  'config': __filename,
+  'url': `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`,
   'models-path': path.resolve('src', 'models'),
   'seeders-path': path.resolve('src', 'seeders'),
   'migrations-path': path.resolve('src', 'migrations')
-}
+};

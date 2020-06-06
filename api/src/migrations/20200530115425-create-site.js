@@ -9,10 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       webAdress: {
+        unique: true,
+        allowNull: false,
         type: Sequelize.STRING
       },
       uuId: {
-        allowNull: false,
         unique: true,
         type: Sequelize.STRING
       },
