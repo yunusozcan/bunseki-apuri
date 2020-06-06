@@ -5,6 +5,7 @@ api/node_modules
 dashboard/node_modules
 client-side/node_modules
 client-side/dist
+dashboard/build
 
 /.pnp
 .pnp.js
