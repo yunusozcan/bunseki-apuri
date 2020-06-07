@@ -63,7 +63,7 @@ describe("bunseki", () => {
     });
     describe("firefox", () => {
         it("should return performance metrics", async () => {
-            const browser = await playwright['firefox'].launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+            const browser = await playwright['firefox'].launch();
             const context = await browser.newContext();
             const page = await context.newPage();
             await page.goto('https://yunusozcan.com/');
@@ -123,7 +123,7 @@ describe("bunseki", () => {
     });
     describe("webkit", () => {
         it("should return performance metrics", async () => {
-            const browser = await playwright['webkit'].launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+            const browser = await playwright['webkit'].launch();
             const context = await browser.newContext();
             const page = await context.newPage();
             await page.goto('https://yunusozcan.com/');
