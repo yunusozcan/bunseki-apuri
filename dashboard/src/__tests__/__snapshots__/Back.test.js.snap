@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<a
+  className="App-back App-button"
+  href="/"
+  onClick={[Function]}
+>
+  <img
+    alt="back"
+    className="App-back-image"
+    src="back.svg"
+  />
+</a>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="App-list-item"
+>
+  <span
+    className="App-list-item-span"
+  >
+    Test
+  </span>
+  <a
+    href="/dashboard/1"
+    onClick={[Function]}
+  >
+    <button
+      className="App-button"
+      type="button"
+    >
+      <img
+        alt="dashboard"
+        className="App-dashboard-image"
+        src="dashboard.svg"
+      />
+      <span>
+        Dashboard
+      </span>
+    </button>
+  </a>
+</div>
+`;

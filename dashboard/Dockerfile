@@ -13,6 +13,7 @@ ENV REACT_APP_API_URL $APIURL
 ENV REACT_APP_STATIC_URL $STATICURL
 
 RUN npm run build
+RUN npm run test
 
 # production environment
 FROM nginx:stable-alpine

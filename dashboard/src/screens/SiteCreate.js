@@ -40,14 +40,16 @@ function SiteList() {
             </form>
             {isSubmitted && (
                 <pre className="App-code">
-{`(function(b,u,n,s,e,k,i){
-    e=u.getElementsByTagName('head')[0];
-    k=u.createElement('script');k.async=s;k.src=n;
-    e.appendChild(k);
-    k.addEventListener('loaded', function() {
-    Bunseki.init(b,i);
-});
-})(window,document,"`+process.env.REACT_APP_STATIC_URL+`bunseki.min.1.0.0.js", true, "`+data.key+`");`}
+{`</script>
+    (function(b,u,n,s,e,k,i){
+        k=u.getElementsByTagName('head')[0];
+        i=u.createElement('script');i.async=s;i.src=n;
+        k.appendChild(i);
+        i.addEventListener('load', function() {
+            b.Bunseki.init(b,e);
+        });
+    })(window,document,"`+process.env.REACT_APP_STATIC_URL+`bunseki.min.1.0.0.js", true, "`+data.key+`");
+</script>`}
                 </pre>
             )}
         </div>
