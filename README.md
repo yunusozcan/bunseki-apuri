@@ -2,7 +2,7 @@
 Bunseki apuri is a analytics service who measure web apps performance metrics. Like a TTFB, FCB, DOM Load, Window Load  etc.
 #### Run
 ```bash
-docker-compese up --build
+docker-compose up --build
 ```
 
 #### Usage
