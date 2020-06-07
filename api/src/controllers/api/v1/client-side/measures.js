@@ -6,11 +6,11 @@ const router = express.Router();
 
 router.post('/', passport.authenticate('client-side', { session: false }), (req, res) => {
     try {
-        if (Object.keys(req.body).length === 0 || !req.body.data || Object.keys(req.body.data).length === 0) {
+        if (Object.keys(req.body).length === 0 || !req.body.metrics || Object.keys(req.body.metrics).length === 0) {
             res.status(400).send('400 Bad Request!');
         } else {
             models.Site.findOne({ where: { id: req.user.id } }).then((site) => {
-                models.Measurement.bulkCreate(req.body.data.map((a)=> {
+                models.Measurement.bulkCreate(req.body.metrics.map((a)=> {
                     a.SiteId = req.user.id;
                     return a;
                 })).then((response) => {

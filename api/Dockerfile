@@ -28,4 +28,4 @@ ENV PG_PORT $PG_PORT
 
 # start app
 EXPOSE 3000
-ENTRYPOINT npx sequelize db:migrate && node src/index.js
+ENTRYPOINT npx sequelize db:migrate && npm run test && node src/index.js

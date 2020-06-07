@@ -19,7 +19,7 @@ describe("api/v1/client-side", () => {
                     const res = await request(app).post("/api/v1/client-side/measures")
                         .set('Authorization', 'Bearer ' + site.uuId)
                         .send({
-                            data: [
+                            metrics: [
                                 {
                                     "type": "ttfb",
                                     "value": "200.3455665",
@@ -51,7 +51,7 @@ describe("api/v1/client-side", () => {
             it("should return 401 error when there is no token", async () => {
                 const res = await request(app).post("/api/v1/client-side/measures")
                     .send({
-                        data: [
+                        metrics: [
                             {
                                 "type": "ttfb",
                                 "value": "200.3455665",
@@ -68,7 +68,7 @@ describe("api/v1/client-side", () => {
                 const res = await request(app).post("/api/v1/client-side/measures")
                     .set('Authorization', 'Bearer ' + uuid)
                     .send({
-                        data: [
+                        metrics: [
                             {
                                 "type": "ttfb",
                                 "value": "200.3455665",
