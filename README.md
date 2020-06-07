@@ -8,13 +8,13 @@ docker-compese up --build
 #### Usage
 ```javascript
 (function(b,u,n,s,e,k,i){
-    e=u.getElementsByTagName('head')[0];
-    k=u.createElement('script');k.async=s;k.src=n;
-    e.appendChild(k);
-    k.addEventListener('loaded', function() {
-      Bunseki.init(b,i);
+    k=u.getElementsByTagName('head')[0];
+    i=u.createElement('script');i.async=s;i.src=n;
+    k.appendChild(i);
+    i.addEventListener('load', function() {
+        b.Bunseki.init(b,e);
     });
-})(window,document,"https://localhost.com:8082/bunseki-min.1.0.0.js", true, "API_KEY");
+})(window,document,"http://localhost:8082/bunseki.min.1.0.0.js", true, "API_KEY");
 ```
 
 ## API Tech Stack
