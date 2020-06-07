@@ -10,16 +10,35 @@ Bunseki = {};
 window.Bunseki.VERSION = "1.0.0";
 window.Bunseki.SERVICE_URL = config.url;
 
-window.Bunseki.getMetrics = function (window) {
+window.Bunseki.getMetrics = function (performance) {
     console.log("getMetrics");
     const timestamp = new Date();
-    const navigationTiming = window.performance.getEntriesByType(
-        'navigation'
-    )[0];
+    let navigationTiming = performance.getEntriesByType('navigation');
+
+    //TODO calculate metrics for PerformanceNavigationTiming API and PerformancePaintTiming API unsupported browsers.
+    if (navigationTiming === undefined || navigationTiming.length <= 0) {
+        console.log("There are no Navigation performance records");
+        navigationTiming = {
+            responseStart: 0,
+            loadEventStart: 0,
+            domInteractive: 0
+        };
+    } else {
+        navigationTiming = navigationTiming[0];
+    }
+
+    let paintTiming = performance.getEntriesByName("first-contentful-paint");
+    if (paintTiming === undefined || paintTiming.length <= 0) {
+        console.log("There are no paint performance records");
+        paintTiming = {startTime: 0};
+    } else {
+        paintTiming = paintTiming[0];
+    }
+
     const TTFB = navigationTiming.responseStart;
     const WINDOW_LOAD = navigationTiming.loadEventStart;
     const DOM_LOAD = navigationTiming.domInteractive;
-    const FCP = window.performance.getEntriesByName('first-contentful-paint')[0].startTime;
+    const FCP = paintTiming.startTime;
 
     return [
         {
@@ -45,7 +64,7 @@ window.Bunseki.getMetrics = function (window) {
     ];
 };
 
-window.Bunseki.getResourceNetworkTiming = function () {
+window.Bunseki.getResourceNetworkTiming = function (performance) {
     console.log("getResourceNetworkTiming");
     const resources = performance.getEntriesByType("resource");
     if (resources === undefined || resources.length <= 0) {
@@ -90,7 +109,7 @@ window.Bunseki.save = function (apiKey, metrics, resourceNetworkTiming) {
 window.Bunseki.init = function (clientWindow, apiKey) {
     console.log("Bunseki initialized.");
     if (clientWindow.performance) {
-        window.Bunseki.save(apiKey, window.Bunseki.getMetrics(), window.Bunseki.getResourceNetworkTiming());
+        window.Bunseki.save(apiKey, window.Bunseki.getMetrics(clientWindow.performance), window.Bunseki.getResourceNetworkTiming(clientWindow.performance));
     } else {
         console.log('Performance timing isn\'t supported.');
     }

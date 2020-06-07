@@ -11,6 +11,8 @@ ENV API_URL $APIURL
 
 RUN npm run bundle
 
+# TODO tests can run in docker
+
 # production environment
 FROM nginx:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html

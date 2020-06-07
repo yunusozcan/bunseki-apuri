@@ -5,7 +5,7 @@
   "main": "bunseki.js",
   "scripts": {
     "bundle": "gulp",
-    "test": "export API_URL=http://localhost:8081/ && npm run bundle && jest",
+    "test": "jest",
     "coverage": "nyc --reporter=html --reporter=text mocha --exit --timeout 15000"
   },
   "author": "",
